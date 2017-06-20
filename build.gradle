@@ -36,6 +36,7 @@ mainClassName = "pl.wbarczynski.teaching.testing.hello_spark.app.HelloWorld"
 dependencies {
     compile group: 'com.sparkjava', name: 'spark-core', version: '2.6.0'
     compile group: 'io.swagger', name: 'swagger-jaxrs', version: '1.5.13'
+	compile 'com.google.code.findbugs:annotations:3.0.1'
     testCompile group: 'junit', name: 'junit', version: '4.+'
 }
 
@@ -55,6 +56,18 @@ checkstyle {
 
 tasks.withType(Checkstyle) {
   reports {
-    html.destination rootProject.file("build/reports/checkstyle.html")
+    xml.enabled = false
+    html.enabled = true
   }
+}
+
+tasks.withType(FindBugs) {
+  reports {
+    xml.enabled = false
+    html.enabled = true
+  }
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '3.0'
 }

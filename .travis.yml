@@ -1,0 +1,10 @@
+language: java
+
+java:
+ - "1.8.0_131"
+
+install:
+- make package
+
+script:
+- make test
